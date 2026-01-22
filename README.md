@@ -62,10 +62,8 @@ Create environment variables
 Create a .env file in the root directory:
 
 env   PORT=3000
-   MONGODB_URI=mongodb://localhost:27017/lead-management
+   MONGODB_URI=mongodb://localhost:27017/project-name
    JWT_SECRET=your_super_secret_jwt_key_here_change_in_production
-For MongoDB Atlas:
-env   MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/lead-management?retryWrites=true&w=majority
 
 Start the server
 
@@ -171,12 +169,14 @@ json{
     "updatedAt": "2024-01-23T11:30:00.000Z"
   }
 }
+
 Delete Lead
 httpDELETE /api/leads/:id
 Response:
 json{
   "message": "Lead deleted successfully"
 }
+
 🗄️ Database Schema
 User Model
 javascript{
@@ -187,6 +187,7 @@ javascript{
   createdAt: Date,
   updatedAt: Date
 }
+
 Lead Model
 javascript{
   name: String (required),
@@ -197,6 +198,7 @@ javascript{
   createdAt: Date,
   updatedAt: Date
 }
+
 🔒 Security Features
 
 Password Hashing: All passwords are hashed using bcryptjs before storage
@@ -211,13 +213,16 @@ Register:
 bashcurl -X POST http://localhost:3000/api/auth/register \
   -H "Content-Type: application/json" \
   -d '{"name":"John Doe","email":"john@example.com","password":"password123","phoneno":"1234567890"}'
+  
 Login:
 bashcurl -X POST http://localhost:3000/api/auth/login \
   -H "Content-Type: application/json" \
   -d '{"email":"john@example.com","password":"password123"}'
+  
 Get Leads:
 bashcurl -X GET http://localhost:3000/api/leads \
   -H "Authorization: Bearer YOUR_JWT_TOKEN"
+  
 Using Postman
 
 Import the API endpoints
